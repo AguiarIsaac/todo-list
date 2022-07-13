@@ -1,7 +1,8 @@
-import styles from './Global.module.css'
+import './Global.module.css'
+import styles from './App.module.css'
 import Logo from './Assets/rocket.svg'
-import Clipboard from './Assets/Clipboard.svg'
 import { NewTask } from './Components/NewTask'
+import { Tasks } from './Components/Tasks'
 
 export function App() {
   return (
@@ -13,23 +14,9 @@ export function App() {
 
       <div className={styles.wrapper}>
         <NewTask />
-
-        <div className={styles.tasks}>
-          <div className="tasksInformations">
-            <p>Tarefas criadas <span>0</span></p>
-            <p>Concluidas <span>0</span></p>
-          </div>
-
-        <div className="taskList">
-          <img src={Clipboard} alt="icone de lista de tarefas"/>
-
-          <p>Você ainda não possui tarefas cadastradas</p><br />
-          <p>Crie tarefas e organize seus itens a fazer</p>
-        </div>
-        </div>        
+        <Tasks />
       </div>
     </div>
-
   )
 }
 
