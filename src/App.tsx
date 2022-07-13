@@ -1,22 +1,30 @@
 import './Global.module.css'
 import styles from './App.module.css'
-import Logo from './Assets/rocket.svg'
-import { NewTask } from './Components/NewTask'
-import { Tasks } from './Components/Tasks'
+import Plus from './Assets/plus.svg'
+import { Header } from './Components/Header'
+import { TaskEmpty } from './Components/TaskEmpty'
+
 
 export function App() {
   return (
-    <div>
-      <header> 
-        <img src={Logo} alt="Icone de Foguete" />
-        <h1>to<span>do</span></h1>
-      </header>
-
+    <>
+      <Header />
       <div className={styles.wrapper}>
-        <NewTask />
-        <Tasks />
+        <div className={styles.newTask}>
+          <form>
+              <textarea placeholder="Adicione uma nova tarefa"/>
+              <button type="submit">Criar <img src={Plus} alt="Icone de adição" /></button>
+          </form>
+        </div>
+
+        <div className={styles.tasksInfo}>
+          <p>Tarefas criadas <span>0</span></p>
+          <p>Concluídas <span>0</span></p>
+        </div>
+
+        <TaskEmpty/>
       </div>
-    </div>
+    </>
   )
 }
 
