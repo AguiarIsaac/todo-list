@@ -1,12 +1,28 @@
 import './Global.module.css'
 import styles from './App.module.css'
 import Plus from './Assets/plus.svg'
-import Trash from './Assets/trash.svg'
 import { Header } from './Components/Header'
 import { TaskEmpty } from './Components/TaskEmpty'
+import { TaskList } from './Components/TaskList'
+
 
 
 export function App() {
+  const task = [
+    {
+      id: '1',
+      taskContent: 'Terminar estilização da aplicação.',
+    },
+    {
+      id: '2',
+      taskContent: 'Terminar Lógica da aplicação.',
+    },
+    {
+      id: '3',
+      taskContent: 'Fazer deploy.',
+    }
+  ]
+  
   return (
     <>
       <Header />
@@ -14,22 +30,26 @@ export function App() {
         <div className={styles.newTask}>
           <form>
               <textarea placeholder="Adicione uma nova tarefa"/>
-              <button type="submit">Criar <img src={Plus} alt="Icone de adição" /></button>
+              <button type="submit">Criar <img src={Plus} alt="Icone de adição"/></button>
           </form>
         </div>
 
         <div className={styles.tasksInfo}>
-          <p>Tarefas criadas <span>0</span></p>
+          <p>Tarefas criadas <span>{task.length}</span></p>
           <p>Concluídas <span>0</span></p>
         </div>
 
-        <div className={styles.taskList}>
-          <div className={styles.task}>
-            <input type="checkbox" id="check"/>
-            <label htmlFor="check">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ex rem, praesentium magni inven.</label>
-            <img src={Trash} alt="Icone de lixeira"/>
-          </div>
-        </div>
+        {
+          task.map(task => {
+            return (
+              <TaskList
+                key={task.taskContent}
+                id={task.id}
+                taskContent={task.taskContent}
+              />
+            )
+          })
+        }
       </div>
     </>
   )
