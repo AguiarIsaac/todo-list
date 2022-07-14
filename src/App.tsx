@@ -24,13 +24,11 @@ export function App() {
         </div>
 
         <div className={styles.taskList}>
-
           <div className={styles.task}>
-            <input className={styles.checkmark} type="checkbox" id="CheckTesk"/>
-            <label htmlFor="CheckTesk">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam dicta, veritatis quo.</label>
+            <input type="checkbox" id="check"/>
+            <label htmlFor="check">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ex rem, praesentium magni inven.</label>
             <img src={Trash} alt="Icone de lixeira"/>
           </div>
-
         </div>
       </div>
     </>
