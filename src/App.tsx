@@ -21,23 +21,16 @@ export function App() {
       id: '3',
       taskContent: 'Fazer deploy.',
     },
-    {
-      id: '4',
-      taskContent: 'Usar o stato e deixar a incerção de dados dinamica',
-    }
   ])
 
   function handleNewTask(event: FormEvent) {
-    event.target.setCustomValidity('')
-    
-    const insertNewTask = {
-      id: 'task.length + 1',
-      taskContent: event.target.value
-    }
-
-    setTask([...task, insertNewTask])
-
+    event.preventDefault()
+    setTask([...task, {
+      id: '4',
+      taskContent: 'Usar o stato e deixar a incerção de dados dinamica',
+    }])
   }
+
 
   return (
     <>
