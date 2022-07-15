@@ -70,4 +70,5 @@ input[type="checkbox"]:checked + label {
     background: var(--gray-400);
     color: var(--danger);
     box-shadow: 1px 1px 1px  #000000;
+    border-radius: 4px;
 }

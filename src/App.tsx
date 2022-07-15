@@ -3,7 +3,7 @@ import styles from './App.module.css'
 import Plus from './Assets/plus.svg'
 import { Header } from './Components/Header'
 import { TaskList } from './Components/TaskList'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, HtmlHTMLAttributes, useState } from 'react'
 
 
 export function App() {
@@ -25,12 +25,18 @@ export function App() {
 
   function handleNewTask(event: FormEvent) {
     event.preventDefault()
-    setTask([...task, {
-      id: '4',
-      taskContent: 'Usar o stato e deixar a incerção de dados dinamica',
-    }])
+
+    const taskInput = event.target.task.value
+
+    setTask([...task, {id: 'task.length + 1', taskContent: taskInput}])
   }
 
+  function handleDeleteTask(taskContent: string) {
+    const taskWithoutDeleteOne = task.filter((task) => {
+      return task.taskContent != taskContent
+    })
+    setTask(taskWithoutDeleteOne)
+  }
 
   return (
     <>
@@ -40,6 +46,7 @@ export function App() {
           <form onSubmit={handleNewTask}>
               <textarea
                 placeholder="Adicione uma nova tarefa"
+                name="task"
               />
               <button type="submit">Criar <img src={Plus} alt="Icone de adição"/></button>
           </form>
@@ -57,6 +64,7 @@ export function App() {
                 key={task.taskContent}
                 id={task.id}
                 taskContent={task.taskContent}
+                onDelete={handleDeleteTask}
               />
             )
           })
