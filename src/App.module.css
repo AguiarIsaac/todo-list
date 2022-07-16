@@ -40,11 +40,16 @@
     justify-content: center;
     display: flex;
     gap: 0.5rem;
+    cursor: pointer;
+}
+
+.newTask button:hover {
+    background: var(--purple);
 }
 
 .tasksInfo {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 46rem;
     max-width: 80%;
 

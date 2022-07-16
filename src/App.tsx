@@ -3,32 +3,28 @@ import styles from './App.module.css'
 import Plus from './Assets/plus.svg'
 import { Header } from './Components/Header'
 import { TaskList } from './Components/TaskList'
-import { ChangeEvent, FormEvent, HtmlHTMLAttributes, useState } from 'react'
+import {  FormEvent, useState } from 'react'
 
+interface FormFields {
+  task: HTMLInputElement;
+}
 
 export function App() {
 
   const [task, setTask] = useState([
     {
-      id: '1',
-      taskContent: 'Terminar estilização da aplicação.',
-    },
-    {
-      id: '2',
-      taskContent: 'Terminar Lógica da aplicação.',
-    },
-    {
-      id: '3',
-      taskContent: 'Fazer deploy.',
+      id: 'Digite sua tarefa',
+      taskContent: 'Digite suas tarefas!!',
     },
   ])
+
 
   function handleNewTask(event: FormEvent) {
     event.preventDefault()
 
-    const taskInput = event.target.task.value
+    const formState = (event.target as unknown) as FormFields;
 
-    setTask([...task, {id: 'task.length + 1', taskContent: taskInput}])
+    setTask([...task, {id: formState.task.value,  taskContent: formState.task.value}])
   }
 
   function handleDeleteTask(taskContent: string) {
@@ -47,6 +43,7 @@ export function App() {
               <textarea
                 placeholder="Adicione uma nova tarefa"
                 name="task"
+                required
               />
               <button type="submit">Criar <img src={Plus} alt="Icone de adição"/></button>
           </form>
@@ -54,21 +51,20 @@ export function App() {
 
         <div className={styles.tasksInfo}>
           <p>Tarefas criadas <span>{task.length}</span></p>
-          <p>Concluídas <span>0 de 0</span></p>
         </div>
 
         {
           task.map(task => {
             return (
               <TaskList
-                key={task.taskContent}
                 id={task.id}
                 taskContent={task.taskContent}
                 onDelete={handleDeleteTask}
-              />
+               />
             )
           })
         }
+
       </div>
     </>
   )
