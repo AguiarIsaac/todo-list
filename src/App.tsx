@@ -4,19 +4,20 @@ import Plus from './Assets/plus.svg'
 import { Header } from './Components/Header'
 import { TaskList } from './Components/TaskList'
 import {  FormEvent, useState } from 'react'
+import { TaskEmpty } from './Components/TaskEmpty'
 
 interface FormFields {
   task: HTMLInputElement;
 }
 
+interface TaskProps {
+  id: string,
+  taskContent: string
+}
+
 export function App() {
 
-  const [task, setTask] = useState([
-    {
-      id: 'Digite sua tarefa',
-      taskContent: 'Digite suas tarefas!!',
-    },
-  ])
+  const [task, setTask] = useState<TaskProps[]>([])
 
 
   function handleNewTask(event: FormEvent) {
@@ -34,6 +35,8 @@ export function App() {
     setTask(taskWithoutDeleteOne)
   }
 
+
+  console.log(task)
   return (
     <>
       <Header />
@@ -53,17 +56,21 @@ export function App() {
           <p>Tarefas criadas <span>{task.length}</span></p>
         </div>
 
-        {
-          task.map(task => {
+
+        {task.length == 0 && <TaskEmpty />}
+
+        {task.length > 0 && task.map(task => {
             return (
               <TaskList
                 id={task.id}
                 taskContent={task.taskContent}
                 onDelete={handleDeleteTask}
+                key={task.id}
                />
             )
           })
         }
+
 
       </div>
     </>

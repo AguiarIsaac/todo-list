@@ -1,5 +1,6 @@
 import styles from './TaskList.module.css'
 import { Trash } from 'phosphor-react'
+import { ChangeEvent } from 'react';
 
 interface TaskProps {
     id: string;
