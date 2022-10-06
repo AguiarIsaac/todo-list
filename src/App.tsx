@@ -12,7 +12,8 @@ interface FormFields {
 
 interface TaskProps {
   id: string,
-  taskContent: string
+  taskContent: string,
+  conclued: boolean
 }
 
 export function App() {
@@ -25,7 +26,7 @@ export function App() {
 
     const formState = (event.target as unknown) as FormFields;
 
-    setTask([...task, {id: formState.task.value,  taskContent: formState.task.value}])
+    setTask([...task, {id: formState.task.value,  taskContent: formState.task.value, conclued: false}])
   }
 
   function handleDeleteTask(taskContent: string) {
@@ -35,8 +36,19 @@ export function App() {
     setTask(taskWithoutDeleteOne)
   }
 
+  function handleConlued(taskContent: string, conclued: boolean) {
+    const newList = task.map(item => {
+      if (item.taskContent == taskContent) {
+        return {
+          ...item,
+          conclued: conclued
+        }
+      }
+    })
 
-  console.log(task)
+    setTask(newList)
+
+  }
   return (
     <>
       <Header />
@@ -65,7 +77,9 @@ export function App() {
                 id={task.id}
                 taskContent={task.taskContent}
                 onDelete={handleDeleteTask}
+                onConclued={handleConlued}
                 key={task.id}
+                conclued={task.conclued}
                />
             )
           })
