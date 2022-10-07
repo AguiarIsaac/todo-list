@@ -26,7 +26,12 @@ export function App() {
 
     const formState = (event.target as unknown) as FormFields;
 
-    setTask([...task, {id: formState.task.value,  taskContent: formState.task.value, conclued: false}])
+    // Falta só a verificação de task iguais
+
+    setTask([...task, {id: formState.task.value,  taskContent: formState.task.value, conclued: false}]);
+
+    formState.task.value = ''
+
   }
 
   function handleDeleteTask(taskContent: string) {
