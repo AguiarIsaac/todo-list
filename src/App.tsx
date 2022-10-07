@@ -3,7 +3,7 @@ import styles from './App.module.css'
 import Plus from './Assets/plus.svg'
 import { Header } from './Components/Header'
 import { TaskList } from './Components/TaskList'
-import {  FormEvent, useState } from 'react'
+import {  FormEvent, useEffect, useState } from 'react'
 import { TaskEmpty } from './Components/TaskEmpty'
 
 interface FormFields {
@@ -19,8 +19,8 @@ interface TaskProps {
 export function App() {
 
   const [task, setTask] = useState<TaskProps[]>([])
-
-
+  const [finalized, setFinalizeds] = useState(0)
+  
   function handleNewTask(event: FormEvent) {
     event.preventDefault()
 
@@ -36,7 +36,7 @@ export function App() {
     setTask(taskWithoutDeleteOne)
   }
 
-  function handleConlued(taskContent: string, conclued: boolean) {
+  function handleConlued(taskContent: string, conclued: any) {
     const newList = task.map(item => {
       if (item.taskContent == taskContent) {
         return {
@@ -44,11 +44,29 @@ export function App() {
           conclued: conclued
         }
       }
-    })
+      return item
+    });
 
     setTask(newList)
-
   }
+
+  useEffect(() => {
+    const calcFinalizeds = task.map(item => {
+      if(item.conclued) {
+       return 1
+      } else {
+        return 0
+      }
+    })
+
+    let total = 0
+    for(let c = 0; c < calcFinalizeds.length; c++) {
+      total += calcFinalizeds[c]
+    }
+
+    setFinalizeds(total)
+  },[task])
+
   return (
     <>
       <Header />
@@ -66,6 +84,7 @@ export function App() {
 
         <div className={styles.tasksInfo}>
           <p>Tarefas criadas <span>{task.length}</span></p>
+          <p>Concluidas <span>{finalized} de {task.length}</span></p>
         </div>
 
 
