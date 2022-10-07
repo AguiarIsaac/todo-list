@@ -49,7 +49,7 @@
 
 .tasksInfo {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     width: 46rem;
     max-width: 80%;
 
