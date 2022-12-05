@@ -27,12 +27,34 @@ export function App() {
 
     const formState = (event.target as unknown) as FormFields;
 
-    // Falta só a verificação de task iguais
+    function filterTaskDupliced(taskSelected: TaskProps) {
 
-    setTask([...task, {id: formState.task.value,  taskContent: formState.task.value, conclued: false}]);
+      if(task.length === 0) {
+        setTask([taskSelected])
+        formState.task.value = ''
 
-    formState.task.value = ''
+      } else {
+        const duplicate = task.find(item => item.id == taskSelected.id)
+  
+        if(duplicate) {
+          window.alert('Essa tarefa já existe na sua lista =D')
+          formState.task.value = ''
 
+        } else {
+          setTask([...task, taskSelected])
+          formState.task.value = ''
+
+        }
+      }
+    }
+
+    const newTask = {
+      id: formState.task.value,
+      taskContent: formState.task.value,
+      conclued: false
+    }
+
+    filterTaskDupliced(newTask)
   }
 
   function handleDeleteTask(taskContent: string) {
@@ -115,4 +137,3 @@ export function App() {
     </>
   )
 }
-
