@@ -1,4 +1,5 @@
 import './Global.module.css'
+import './Responsive.module.css'
 import styles from './App.module.css'
 import Plus from './Assets/plus.svg'
 import { Header } from './Components/Header'
@@ -83,7 +84,7 @@ export function App() {
                 name="task"
                 required
               />
-              <button type="submit">Criar <img src={Plus} alt="Icone de adição"/></button>
+              <button type="submit" title='Criar tarefa'>Criar <img src={Plus} alt="Icone de adição"/></button>
           </form>
         </div>
 

@@ -8,6 +8,7 @@
     border-top: 1px solid var(--gray-300);
     border-radius: 8px;
     padding: 4rem 1.5rem;
+    text-align: center;
 }
 
 .listTaskEmpty img {

@@ -1,0 +1,15 @@
+@media(max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  textarea {
+    font-size: 12px;
+  }
+}
+
+@media(min-width: 1900px) {
+  body {
+    font-size: 18px;
+  }
+}

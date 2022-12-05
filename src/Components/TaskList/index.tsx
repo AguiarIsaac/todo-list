@@ -34,7 +34,7 @@ export function TaskList({id, taskContent, conclued, onDelete, onConclued}: Task
             <label onClick={concluedTask}
               htmlFor={id}
             >{taskContent}</label>
-            <button type="button" title="Delete Task" onClick={deleteTask}>
+            <button type="button" title="Apagar tarefa" onClick={deleteTask}>
               <Trash size={22}/>
             </button>
           </div>
